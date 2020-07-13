@@ -47,7 +47,6 @@ async def on_member_join(member):
 # Upgrade to this https://www.youtube.com/watch?v=MgCJG8kkq50
 @client.event
 async def on_reaction_add(reaction, user):
-    print("Added reaction")
     if user.bot:
         return
     channel = reaction.message.channel
@@ -65,6 +64,7 @@ async def on_reaction_add(reaction, user):
             await basewrapper.Base().log_channel(client, user.guild.id, embed)
             message = await channel.send(f"<@{str(user.id)}> Request sent.")
         await message.delete(delay=2.3)
+        await reaction.remove(user)
 
     elif str(reaction.emoji) == "<:emoji_two:731979396306436217>":
         # Request to ally
@@ -81,6 +81,7 @@ async def on_reaction_add(reaction, user):
 
             message = await channel.send(f"<@{str(user.id)}> Request sent.")
         await message.delete(delay=2.3)
+        await reaction.remove(user)
 
     elif str(reaction.emoji) == "<:emoji_three:731979417462505562>":
         # Request diplomacy
@@ -97,6 +98,7 @@ async def on_reaction_add(reaction, user):
 
             message = await channel.send(f"<@{str(user.id)}> Request sent.")
         await message.delete(delay=2.3)
+        await reaction.remove(user)
 
     elif str(reaction.emoji) == "<:emoji_four:731979434944364584>":
         # Another faction leader
@@ -113,8 +115,7 @@ async def on_reaction_add(reaction, user):
 
             message = await channel.send(f"<@{str(user.id)}> You are now registered as another faction member.")
         await message.delete(delay=2.3)
-
-    await reaction.remove(user)
+        await reaction.remove(user)
 
 @client.event
 async def on_guild_join(guild):
