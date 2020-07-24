@@ -23,6 +23,7 @@ async def on_message(message):
 
     if str(message.author.id) == "418004977680908293":
         if "https" or "http" in message.content:
+            print(message.content)
             await message.delete()
 
     await client.process_commands(message)
