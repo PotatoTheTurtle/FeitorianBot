@@ -21,7 +21,7 @@ async def on_message(message):
     if message.author == client.user:
         return
 
-    if message.author.id == "418004977680908293":
+    if str(message.author.id) == "418004977680908293":
         if "https" or "http" in message.content:
             await message.delete()
 
