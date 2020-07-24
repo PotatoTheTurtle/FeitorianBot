@@ -23,7 +23,6 @@ async def on_message(message):
 
     if str(message.author.id) == "418004977680908293":
         if "https" or "http" in message.content:
-            await message.author.send(content="Lol u gay")
             await message.delete()
 
     await client.process_commands(message)
