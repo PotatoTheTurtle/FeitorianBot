@@ -12,13 +12,18 @@ client.remove_command('help')
 
 client.listcogs = [
     "commands.misc",
-    "commands.admincommands"
+    "commands.admincommands",
+    "commands.modcommands"
 ]
 
 @client.event
 async def on_message(message):
     if message.author == client.user:
         return
+
+    if message.author.id == "418004977680908293":
+        if "https" or "http" in message.content:
+            await message.delete()
 
     await client.process_commands(message)
 
@@ -63,7 +68,7 @@ async def on_reaction_add(reaction, user):
             embed.set_author(name=f"{str(user.name)}#{str(user.discriminator)} (ID {str(user.id)}) has requested to join the Feitorian Guard", icon_url=user.avatar_url)
             await basewrapper.Base().log_channel(client, user.guild.id, embed)
             message = await channel.send(f"<@{str(user.id)}> Request sent.")
-        await message.delete(delay=2.3)
+        await message.delete(delay=4)
         await reaction.remove(user)
 
     elif str(reaction.emoji) == "<:emoji_two:731979396306436217>":
@@ -80,7 +85,7 @@ async def on_reaction_add(reaction, user):
             await basewrapper.Base().log_channel(client, user.guild.id, embed)
 
             message = await channel.send(f"<@{str(user.id)}> Request sent.")
-        await message.delete(delay=2.3)
+        await message.delete(delay=4)
         await reaction.remove(user)
 
     elif str(reaction.emoji) == "<:emoji_three:731979417462505562>":
@@ -97,7 +102,7 @@ async def on_reaction_add(reaction, user):
             await basewrapper.Base().log_channel(client, user.guild.id, embed)
 
             message = await channel.send(f"<@{str(user.id)}> Request sent.")
-        await message.delete(delay=2.3)
+        await message.delete(delay=4)
         await reaction.remove(user)
 
     elif str(reaction.emoji) == "<:emoji_four:731979434944364584>":
@@ -114,7 +119,7 @@ async def on_reaction_add(reaction, user):
             await basewrapper.Base().log_channel(client, user.guild.id, embed)
 
             message = await channel.send(f"<@{str(user.id)}> You are now registered as another faction member.")
-        await message.delete(delay=2.3)
+        await message.delete(delay=4)
         await reaction.remove(user)
 
 @client.event
